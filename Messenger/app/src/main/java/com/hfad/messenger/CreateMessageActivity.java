@@ -37,7 +37,7 @@ public class CreateMessageActivity extends AppCompatActivity {
 
         EditText message = (EditText) findViewById(R.id.message);
 
-        // Toast.makeText(this, message.getText(), Toast.LENGTH_LONG).show();
+        // Intent
 
         Intent intent = new Intent(this, ReceiveMessageActivity.class);
 
