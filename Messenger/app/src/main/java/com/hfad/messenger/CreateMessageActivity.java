@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -39,11 +40,16 @@ public class CreateMessageActivity extends AppCompatActivity {
 
         // Intent
 
-        Intent intent = new Intent(this, ReceiveMessageActivity.class);
+        Intent intent = new Intent (Intent.ACTION_SEND); // Intent(this, ReceiveMessageActivity.class);
 
-        intent.putExtra(ReceiveMessageActivity.EXTRA_MESSAGE, message.getText().toString());
+        intent.setType("text/plain");
+
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Hello Intent");
+        intent.putExtra(Intent.EXTRA_TEXT, message.getText().toString()); // ReceiveMessageActivity.EXTRA_MESSAGE, message.getText().toString());
 
         startActivity(intent);
+
+        Log.d("A1", "Finished");
 
     }
 
