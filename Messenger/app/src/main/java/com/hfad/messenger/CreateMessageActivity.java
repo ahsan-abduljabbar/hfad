@@ -47,7 +47,12 @@ public class CreateMessageActivity extends AppCompatActivity {
         intent.putExtra(Intent.EXTRA_SUBJECT, "Hello Intent");
         intent.putExtra(Intent.EXTRA_TEXT, message.getText().toString()); // ReceiveMessageActivity.EXTRA_MESSAGE, message.getText().toString());
 
-        startActivity(intent);
+        //
+
+        String chooserTitle = getString(R.string.chooser);
+        Intent chosenIntent = Intent.createChooser(intent, chooserTitle);
+
+        startActivity(chosenIntent);
 
         Log.d("A1", "Finished");
 
