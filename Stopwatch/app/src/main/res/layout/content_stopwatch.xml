@@ -13,7 +13,44 @@
     tools:showIn="@layout/activity_stopwatch">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:id                      = "@+id/time_view"
+        android:layout_width            = "wrap_content"
+        android:layout_height           = "wrap_content"
+        android:layout_alignParentTop   = "true"
+        android:layout_centerHorizontal = "true"
+        android:layout_marginTop        = "0dp"
+        android:text                    = "15:20"
+        android:textAppearance          = "?android:attr/textAppearanceLarge"
+        android:textSize                = "92sp" />
+
+    <Button
+        android:id                      = "@+id/start_button"
+        android:layout_width            = "wrap_content"
+        android:layout_height           = "wrap_content"
+        android:layout_below            = "@+id/time_view"
+        android:layout_centerHorizontal = "true"
+        android:layout_marginTop        = "20dp"
+        android:onClick                 = "onClickStart"
+        android:text                    = "@string/start" />
+
+    <Button
+        android:id                      = "@+id/stop_button"
+        android:layout_width            = "wrap_content"
+        android:layout_height           = "wrap_content"
+        android:layout_below            = "@+id/start_button"
+        android:layout_centerHorizontal = "true"
+        android:layout_marginTop        = "10dp"
+        android:onClick                 = "onClickStop"
+        android:text                    = "@string/stop" />
+
+    <Button
+        android:id                      = "@+id/reset_button"
+        android:layout_width            = "wrap_content"
+        android:layout_height           = "wrap_content"
+        android:layout_below            = "@+id/stop_button"
+        android:layout_centerHorizontal = "true"
+        android:layout_marginTop        = "10dp"
+        android:onClick                 = "onClickReset"
+        android:text                    = "@string/reset" />
+
 </RelativeLayout>
