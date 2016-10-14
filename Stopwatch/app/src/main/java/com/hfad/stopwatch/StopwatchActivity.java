@@ -18,12 +18,19 @@ public class StopwatchActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stopwatch);
+
+        runTimer();
+
+        //
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -31,6 +38,7 @@ public class StopwatchActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
     }
 
     public void onClickStart (View view) {
@@ -64,21 +72,21 @@ public class StopwatchActivity extends AppCompatActivity {
 
             public void run () {
 
-                int hours = seconds / 3600;
-                int minutes = (seconds % 3600) / 60;
-                int secs = seconds % 60;
+            int hours   =  seconds / 3600;
+            int minutes = (seconds % 3600) / 60;
+            int secs    =  seconds % 60;
 
-                String time = String.format("%d:%02d:%02d", hours, minutes, secs);
+            String time = String.format("%02d:%02d:%02d", hours, minutes, secs);
 
-                timeView.setText(time);
+            timeView.setText(time);
 
-                if(running) {
+            if(running) {
 
-                    seconds++;
+                seconds++;
 
-                }
+            }
 
-                handler.postDelayed(this, 1000);
+            handler.postDelayed(this, 1000);
 
             }
 
@@ -91,8 +99,6 @@ public class StopwatchActivity extends AppCompatActivity {
 
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_stopwatch, menu);
-
-        runTimer();
 
         return true;
 
