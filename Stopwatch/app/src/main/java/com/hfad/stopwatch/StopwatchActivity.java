@@ -1,5 +1,6 @@
 package com.hfad.stopwatch;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -93,6 +94,18 @@ public class StopwatchActivity extends AppCompatActivity {
         });
 
     }
+
+    //
+
+    public void onShowList (View view) {
+
+        Intent intent = new Intent(this, ListActivity.class);
+
+        startActivity(intent);
+
+    }
+
+    //
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
