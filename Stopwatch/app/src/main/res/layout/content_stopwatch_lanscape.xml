@@ -10,57 +10,60 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.hfad.stopwatch.StopwatchActivity"
-    tools:showIn="@layout/activity_stopwatch">
+    android:background="#ffedc1">
 
     <TextView
         android:id                      = "@+id/time_view"
         android:layout_width            = "wrap_content"
         android:layout_height           = "wrap_content"
-        android:layout_alignParentTop   = "true"
-        android:layout_centerHorizontal = "true"
-        android:layout_marginTop        = "0dp"
         android:text                    = "15:20"
         android:textAppearance          = "?android:attr/textAppearanceLarge"
-        android:textSize                = "70sp" />
+        android:textSize                = "70sp"
+        android:layout_above="@+id/reset_button"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="95dp"
+        android:layout_marginEnd="95dp" />
 
     <Button
         android:id                      = "@+id/start_button"
         android:layout_width            = "wrap_content"
         android:layout_height           = "wrap_content"
-        android:layout_below            = "@+id/time_view"
-        android:layout_centerHorizontal = "true"
-        android:layout_marginTop        = "20dp"
         android:onClick                 = "onClickStart"
-        android:text                    = "@string/start" />
+        android:text                    = "@string/start"
+        android:layout_alignTop="@+id/time_view"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id                      = "@+id/stop_button"
         android:layout_width            = "wrap_content"
         android:layout_height           = "wrap_content"
-        android:layout_below            = "@+id/start_button"
-        android:layout_centerHorizontal = "true"
-        android:layout_marginTop        = "10dp"
         android:onClick                 = "onClickStop"
-        android:text                    = "@string/stop" />
+        android:text                    = "@string/stop"
+        android:layout_below="@+id/start_button"
+        android:layout_alignLeft="@+id/start_button"
+        android:layout_alignStart="@+id/start_button" />
 
     <Button
         android:id                      = "@+id/reset_button"
         android:layout_width            = "wrap_content"
         android:layout_height           = "wrap_content"
-        android:layout_below            = "@+id/stop_button"
-        android:layout_centerHorizontal = "true"
-        android:layout_marginTop        = "10dp"
         android:onClick                 = "onClickReset"
-        android:text                    = "@string/reset" />
+        android:text                    = "@string/reset"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/stop_button"
+        android:layout_alignStart="@+id/stop_button" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Show List"
         android:id="@+id/button"
+        android:layout_marginTop="38dp"
+        android:onClick = "onShowList"
         android:layout_below="@+id/reset_button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="68dp"
-        android:onClick = "onShowList" />
+        android:layout_alignLeft="@+id/reset_button"
+        android:layout_alignStart="@+id/reset_button" />
 
 </RelativeLayout>

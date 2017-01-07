@@ -1,16 +1,25 @@
 package com.hfad.stopwatch;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class StopwatchActivity extends AppCompatActivity {
 
@@ -21,7 +30,31 @@ public class StopwatchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stopwatch);
+
+        // Orientation
+
+        int orientation = getResources().getConfiguration().orientation;
+
+        Toast.makeText(this, orientation + "",Toast.LENGTH_SHORT ).show();
+
+        if (orientation == 1) { // Portrait
+
+            setContentView(R.layout.activity_stopwatch);
+
+        } else { // Landscape
+
+            setContentView(R.layout.activity_stopwatch_landscape);
+
+        }
+
+        //
+
+        if (savedInstanceState != null) {
+
+            seconds = savedInstanceState.getInt("seconds");
+            running = savedInstanceState.getBoolean("running");
+
+        }
 
         runTimer();
 
@@ -39,6 +72,14 @@ public class StopwatchActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+
+        savedInstanceState.putInt("seconds", seconds);
+        savedInstanceState.putBoolean("running", running);
 
     }
 
@@ -130,5 +171,46 @@ public class StopwatchActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    // API Call
+
+    public void callApi (View view) {
+
+        Toast.makeText(this, "API Called", Toast.LENGTH_SHORT ).show();
+
+        new RequestTask().execute("http://www.google.com");
+
+    }
+}
+
+class RequestTask extends AsyncTask<String, String, String> {
+
+    @Override
+    protected String doInBackground(String... uri) {
+        String responseString = null;
+        try {
+            URL url = new URL(uri[0]);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            if(conn.getResponseCode() == HttpsURLConnection.HTTP_OK){
+                // Toast.makeText(this,""+ conn.getResponseCode(), Toast.LENGTH_SHORT ).show();
+                Log.i("API Called",conn.getResponseCode()+"");
+            }
+            else {
+
+                // response = "FAILED"; // See documentation for more info on response handling
+
+            }
+        } catch (IOException e) {
+            //TODO Handle problems..
+            Log.i("API Called",e.getMessage());
+        }
+        return responseString;
+    }
+
+    @Override
+    protected void onPostExecute(String result) {
+        super.onPostExecute(result);
+        //Do anything with response..
     }
 }

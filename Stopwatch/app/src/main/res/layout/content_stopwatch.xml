@@ -63,4 +63,15 @@
         android:layout_marginTop="68dp"
         android:onClick = "onShowList" />
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Call API"
+        android:id="@+id/button2"
+        android:layout_alignTop="@+id/button"
+        android:layout_toRightOf="@+id/button"
+        android:layout_toEndOf="@+id/button"
+        android:onClick = "callApi"/>
+
 </RelativeLayout>
